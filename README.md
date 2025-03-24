@@ -171,3 +171,11 @@ $$
     END
 $$ LANGUAGE plpgsql;
 ```
+
+## Пример выполнения
+
+![find_schemas](image/find_schemas.png)
+
+
+![show_columns](image/show_columns.png)
+
