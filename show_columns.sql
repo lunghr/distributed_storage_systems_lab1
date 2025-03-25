@@ -1,14 +1,25 @@
+\echo 'Введите название таблицы: '
+\prompt name_table
+
+\echo 'Введите название схемы:  '
+\prompt schema_name
+
+SELECT pg_catalog.set_config('s368929.table_name', :'name_table', false);
+SELECT pg_catalog.set_config('s368929.schema_name', :'schema_name', false);
 
 DO
 $$
     DECLARE
-        target_table  TEXT := 'students';
-        target_schema TEXT := 's336456';
+        target_table  TEXT;
+        target_schema TEXT;
         col_rec       RECORD;
         header        TEXT;
         divider       TEXT;
         output_line   TEXT;
     BEGIN
+        target_table := current_setting('s368929.table_name', true);
+        target_schema := current_setting('s368929.schema_name', true);
+
         header := lpad('No', 4) || ' | ' ||
                   lpad('Имя столбца', 16) || ' | ' ||
                   lpad('Тип данных', 16) || ' | ' ||

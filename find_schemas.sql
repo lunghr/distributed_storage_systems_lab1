@@ -1,10 +1,17 @@
+\echo 'Введите название таблицы: '
+\prompt name_table
+
+SELECT pg_catalog.set_config('s368929.table_name', :'name_table', false);
+
 DO
 $$
     DECLARE
-        target_table TEXT := 'students';
+        target_table TEXT;
         schema_rec   RECORD;
         table_count  INT;
     BEGIN
+        target_table := current_setting('s368929.table_name', true);
+        
         SELECT COUNT(DISTINCT n.nspname)
         INTO table_count
         FROM pg_class c
